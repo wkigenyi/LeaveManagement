@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN"
+                            "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="xml">
+        <folder name="entities">
+            <folder name="systems_tech247_leavemgt">
+                <file name="DashBoard" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.DashBoardTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//DashBoard//EN"/>
+                </file>
+                <file name="EmployeeLeaveApplications" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//EmployeeLeaveApplications//EN"/>
+                </file>
+                <file name="LVWEmployeeList" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LVWEmployeeList//EN"/>
+                </file>
+                <file name="LeaveApplicationEditor" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.LeaveApplicationEditorTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LeaveApplicationEditor//EN"/>
+                </file>
+                <file name="LeaveApplications" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.LeaveApplicationsTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LeaveApplications//EN"/>
+                </file>
+                <file name="LeaveDashBoard" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.LeaveDashBoardTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LeaveDashBoard//EN"/>
+                </file>
+                <file name="LeaveDue" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.LeaveDueTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LeaveDue//EN"/>
+                </file>
+                <file name="LeaveManagement" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.LeaveManagementTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LeaveManagement//EN"/>
+                </file>
+                <file name="LeaveSetup" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.LeaveSetupTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LeaveSetup//EN"/>
+                </file>
+                <file name="LeaveType" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.LeaveTypeTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LeaveType//EN"/>
+                </file>
+            </folder>
+            <folder name="systems_tech247_pdr">
+                <file name="PositionEditor" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.HolidayEditorTopComponent-->
+                    <!--systems.tech247.leavemgt.LeaveEditorTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.pdr//PositionEditor//EN"/>
+                </file>
+            </folder>
+            <folder name="systems_tech247_leavereports">
+                <file name="LeaveReports" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavereports.LeaveReportsTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavereports//LeaveReports//EN"/>
+                </file>
+            </folder>
+        </folder>
+        <folder name="memory">
+            <folder name="systems">
+                <folder name="tech247">
+                    <folder name="leavemgt">
+                        <file name="DashBoardTopComponent">
+                            <!--systems.tech247.leavemgt.DashBoardTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/DashBoard.instance"/>
+                        </file>
+                        <file name="EmployeeLeaveApplicationsTopComponent">
+                            <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/EmployeeLeaveApplications.instance"/>
+                        </file>
+                        <file name="HolidayEditorTopComponent">
+                            <!--systems.tech247.leavemgt.HolidayEditorTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_pdr/PositionEditor.instance"/>
+                        </file>
+                        <file name="LVWEmployeeListTopComponent">
+                            <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/LVWEmployeeList.instance"/>
+                        </file>
+                        <file name="LeaveApplicationEditorTopComponent">
+                            <!--systems.tech247.leavemgt.LeaveApplicationEditorTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/LeaveApplicationEditor.instance"/>
+                        </file>
+                        <file name="LeaveApplicationsTopComponent">
+                            <!--systems.tech247.leavemgt.LeaveApplicationsTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/LeaveApplications.instance"/>
+                        </file>
+                        <file name="LeaveDashBoardTopComponent">
+                            <!--systems.tech247.leavemgt.LeaveDashBoardTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/LeaveDashBoard.instance"/>
+                        </file>
+                        <file name="LeaveDueTopComponent">
+                            <!--systems.tech247.leavemgt.LeaveDueTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/LeaveDue.instance"/>
+                        </file>
+                        <file name="LeaveEditorTopComponent">
+                            <!--systems.tech247.leavemgt.LeaveEditorTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_pdr/PositionEditor.instance"/>
+                        </file>
+                        <file name="LeaveManagementTopComponent">
+                            <!--systems.tech247.leavemgt.LeaveManagementTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/LeaveManagement.instance"/>
+                        </file>
+                        <file name="LeaveSetupTopComponent">
+                            <!--systems.tech247.leavemgt.LeaveSetupTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/LeaveSetup.instance"/>
+                        </file>
+                        <file name="LeaveTypeTopComponent">
+                            <!--systems.tech247.leavemgt.LeaveTypeTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/LeaveType.instance"/>
+                        </file>
+                    </folder>
+                    <folder name="leavereports">
+                        <file name="LeaveReportsTopComponent">
+                            <!--systems.tech247.leavereports.LeaveReportsTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavereports/LeaveReports.instance"/>
+                        </file>
+                    </folder>
+                </folder>
+            </folder>
+        </folder>
+        <folder name="lookups">
+            <folder name="systems_tech247_leavemgt">
+                <file name="DashBoard.instance">
+                    <!--systems.tech247.leavemgt.DashBoardTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.DashBoardTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.DashBoardTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="EmployeeLeaveApplications.instance">
+                    <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="LVWEmployeeList.instance">
+                    <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LVWEmployeeListTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LVWEmployeeListTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="LeaveApplicationEditor.instance">
+                    <!--systems.tech247.leavemgt.LeaveApplicationEditorTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LeaveApplicationEditorTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LeaveApplicationEditorTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="LeaveApplications.instance">
+                    <!--systems.tech247.leavemgt.LeaveApplicationsTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LeaveApplicationsTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LeaveApplicationsTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="LeaveDashBoard.instance">
+                    <!--systems.tech247.leavemgt.LeaveDashBoardTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LeaveDashBoardTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LeaveDashBoardTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="LeaveDue.instance">
+                    <!--systems.tech247.leavemgt.LeaveDueTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LeaveDueTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LeaveDueTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="LeaveManagement.instance">
+                    <!--systems.tech247.leavemgt.LeaveManagementTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LeaveManagementTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LeaveManagementTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="LeaveSetup.instance">
+                    <!--systems.tech247.leavemgt.LeaveSetupTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LeaveSetupTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LeaveSetupTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="LeaveType.instance">
+                    <!--systems.tech247.leavemgt.LeaveTypeTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LeaveTypeTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LeaveTypeTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+            </folder>
+            <folder name="systems_tech247_pdr">
+                <file name="PositionEditor.instance">
+                    <!--systems.tech247.leavemgt.HolidayEditorTopComponent-->
+                    <!--systems.tech247.leavemgt.LeaveEditorTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.LeaveEditorTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.LeaveEditorTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+            </folder>
+            <folder name="systems_tech247_leavereports">
+                <file name="LeaveReports.instance">
+                    <!--systems.tech247.leavereports.LeaveReportsTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavereports.LeaveReportsTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavereports.LeaveReportsTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="systems-tech247-leavemgt-DashBoardTopComponent.shadow">
+                <!--systems.tech247.leavemgt.DashBoardTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-DashBoardTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-EmployeeLeaveApplicationsTopComponent.shadow">
+                <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-EmployeeLeaveApplicationsTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LVWEmployeeListTopComponent.shadow">
+                <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LVWEmployeeListTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveApplicationEditorTopComponent.shadow">
+                <!--systems.tech247.leavemgt.LeaveApplicationEditorTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LeaveApplicationEditorTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveApplicationsTopComponent.shadow">
+                <!--systems.tech247.leavemgt.LeaveApplicationsTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LeaveApplicationsTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveDashBoardTopComponent.shadow">
+                <!--systems.tech247.leavemgt.LeaveDashBoardTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LeaveDashBoardTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveDueTopComponent.shadow">
+                <!--systems.tech247.leavemgt.LeaveDueTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LeaveDueTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveManagementTopComponent.shadow">
+                <!--systems.tech247.leavemgt.LeaveManagementTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LeaveManagementTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveSetupTopComponent.shadow">
+                <!--systems.tech247.leavemgt.LeaveSetupTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LeaveSetupTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveTypeTopComponent.shadow">
+                <!--systems.tech247.leavemgt.LeaveTypeTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LeaveTypeTopComponent.instance"/>
+            </file>
+            <file name="systems-tech247-leavereports-LeaveReportsTopComponent.shadow">
+                <!--systems.tech247.leavereports.LeaveReportsTopComponent-->
+                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavereports-LeaveReportsTopComponent.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="DashBoardTopComponent.settings">
+                <!--systems.tech247.leavemgt.DashBoardTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.DashBoardTopComponent"/>
+</settings>
+]]></file>
+            <file name="EmployeeLeaveApplicationsTopComponent.settings">
+                <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent"/>
+</settings>
+]]></file>
+            <file name="LVWEmployeeListTopComponent.settings">
+                <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.LVWEmployeeListTopComponent"/>
+</settings>
+]]></file>
+            <file name="LeaveApplicationEditorTopComponent.settings">
+                <!--systems.tech247.leavemgt.LeaveApplicationEditorTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.LeaveApplicationEditorTopComponent"/>
+</settings>
+]]></file>
+            <file name="LeaveDashBoardTopComponent.settings">
+                <!--systems.tech247.leavemgt.LeaveDashBoardTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.LeaveDashBoardTopComponent"/>
+</settings>
+]]></file>
+            <file name="LeaveDueTopComponent.settings">
+                <!--systems.tech247.leavemgt.LeaveDueTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.LeaveDueTopComponent"/>
+</settings>
+]]></file>
+            <file name="LeaveManagementTopComponent.settings">
+                <!--systems.tech247.leavemgt.LeaveManagementTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.LeaveManagementTopComponent"/>
+</settings>
+]]></file>
+            <file name="LeaveSetupTopComponent.settings">
+                <!--systems.tech247.leavemgt.LeaveSetupTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.LeaveSetupTopComponent"/>
+</settings>
+]]></file>
+            <file name="LeaveTypeTopComponent.settings">
+                <!--systems.tech247.leavemgt.LeaveTypeTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.LeaveTypeTopComponent"/>
+</settings>
+]]></file>
+            <file name="LeaveReportsTopComponent.settings">
+                <!--systems.tech247.leavereports.LeaveReportsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavereports.LeaveReportsTopComponent"/>
+</settings>
+]]></file>
+        </folder>
+        <folder name="Modes">
+            <folder name="leftSlidingSide">
+                <file name="DashBoardTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.DashBoardTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="DashBoardTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="editor">
+                <file name="EmployeeLeaveApplicationsTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="EmployeeLeaveApplicationsTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="LeaveApplicationEditorTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.LeaveApplicationEditorTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LeaveApplicationEditorTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="LeaveDashBoardTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.LeaveDashBoardTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LeaveDashBoardTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="LeaveDueTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.LeaveDueTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LeaveDueTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+            </folder>
+            <folder name="explorer">
+                <file name="LVWEmployeeListTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LVWEmployeeListTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="LeaveManagementTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.LeaveManagementTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LeaveManagementTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="LeaveSetupTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.LeaveSetupTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LeaveSetupTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="LeaveTypeTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.LeaveTypeTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LeaveTypeTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="LeaveReportsTopComponent.wstcref">
+                    <!--systems.tech247.leavereports.LeaveReportsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LeaveReportsTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+            </folder>
+        </folder>
+        <folder name="Roles">
+            <folder name="leave">
+                <folder name="Components">
+                    <file name="LeaveApplicationsTopComponent.settings">
+                        <!--systems.tech247.leavemgt.LeaveApplicationsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.LeaveApplicationsTopComponent"/>
+</settings>
+]]></file>
+                </folder>
+                <folder name="Modes">
+                    <folder name="explorer">
+                        <file name="LeaveApplicationsTopComponent.wstcref">
+                            <!--systems.tech247.leavemgt.LeaveApplicationsTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="LeaveApplicationsTopComponent"/>
+  <state opened="true"/>
+</tc-ref>
+]]></file>
+                    </folder>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="systems-tech247-leavemgt-DashBoardTopComponent.instance">
+                <!--systems.tech247.leavemgt.DashBoardTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.DashBoardTopComponent"/>
+                <attr name="preferredID" stringvalue="DashBoardTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_DashBoardAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-EmployeeLeaveApplicationsTopComponent.instance">
+                <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent"/>
+                <attr name="preferredID" stringvalue="EmployeeLeaveApplicationsTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_EmployeeLeaveApplicationsAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LVWEmployeeListTopComponent.instance">
+                <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.LVWEmployeeListTopComponent"/>
+                <attr name="preferredID" stringvalue="LVWEmployeeListTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_LVWEmployeeListAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveApplicationEditorTopComponent.instance">
+                <!--systems.tech247.leavemgt.LeaveApplicationEditorTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.LeaveApplicationEditorTopComponent"/>
+                <attr name="preferredID" stringvalue="LeaveApplicationEditorTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_LeaveApplicationEditorAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveApplicationsTopComponent.instance">
+                <!--systems.tech247.leavemgt.LeaveApplicationsTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.LeaveApplicationsTopComponent"/>
+                <attr name="preferredID" stringvalue="LeaveApplicationsTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_LeaveApplicationsAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveDashBoardTopComponent.instance">
+                <!--systems.tech247.leavemgt.LeaveDashBoardTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.LeaveDashBoardTopComponent"/>
+                <attr name="preferredID" stringvalue="LeaveDashBoardTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_LeaveDashBoardAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveDueTopComponent.instance">
+                <!--systems.tech247.leavemgt.LeaveDueTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.LeaveDueTopComponent"/>
+                <attr name="preferredID" stringvalue="LeaveDueTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_LeaveDueAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveManagementTopComponent.instance">
+                <!--systems.tech247.leavemgt.LeaveManagementTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.LeaveManagementTopComponent"/>
+                <attr name="preferredID" stringvalue="LeaveManagementTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_LeaveManagementAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveSetupTopComponent.instance">
+                <!--systems.tech247.leavemgt.LeaveSetupTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.LeaveSetupTopComponent"/>
+                <attr name="preferredID" stringvalue="LeaveSetupTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_LeaveSetupAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavemgt-LeaveTypeTopComponent.instance">
+                <!--systems.tech247.leavemgt.LeaveTypeTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavemgt.LeaveTypeTopComponent"/>
+                <attr name="preferredID" stringvalue="LeaveTypeTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_LeaveTypeAction" name="displayName"/>
+            </file>
+            <file name="systems-tech247-leavereports-LeaveReportsTopComponent.instance">
+                <!--systems.tech247.leavereports.LeaveReportsTopComponent-->
+                <attr
+                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
+                <attr name="component" newvalue="systems.tech247.leavereports.LeaveReportsTopComponent"/>
+                <attr name="preferredID" stringvalue="LeaveReportsTopComponent"/>
+                <attr
+                    bundlevalue="systems.tech247.leavereports.Bundle#CTL_LeaveReportsAction" name="displayName"/>
+            </file>
+        </folder>
+    </folder>
+</filesystem>

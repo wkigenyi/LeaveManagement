@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN" "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Windows2">
+        <folder name="Groups">
+        <file name = "LVMGroup.wsgrp" url="groups/LVMGroupWsgroup.xml"/>
+        <folder name="LVMGroup">
+            <file name = "LVWEmployeeListTopComponent.wstcgrp" url="groups/lvmgroup/LVWEmployeeListTopComponentWstcgrp.xml"/>
+            <file name = "LeaveReportsTopComponent.wstcgrp" url="groups/lvmgroup/LeaveReportsTopComponentWstcgrp.xml"/>
+            <file name = "LeaveSetupTopComponent.wstcgrp" url="groups/lvmgroup/LeaveSetupTopComponentWstcgrp.xml"/>
+        </folder>    
+        </folder>
+    </folder>
+</filesystem>
