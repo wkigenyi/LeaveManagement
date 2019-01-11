@@ -61,10 +61,10 @@ import systems.tech247.util.NotifyUtil;
 })
 public final class LeaveApplicationEditorTopComponent extends TopComponent implements LookupListener {
     
-    
+    TopComponent lvtypeTC = WindowManager.getDefault().findTopComponent("LeaveTypeTopComponent");
     
     //Lookup for the Leave Type
-    Lookup.Result<LvwLeave> rslt = WindowManager.getDefault().findTopComponent("LeaveTypeTopComponent").getLookup().lookupResult(LvwLeave.class);
+    Lookup.Result<LvwLeave> rslt = lvtypeTC.getLookup().lookupResult(LvwLeave.class);
     
     
     
@@ -113,6 +113,8 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
         
         this.emp = emp;
         
+        fillTheFields();
+        
         jdcLeaveStarts.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -144,6 +146,8 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
                 }
             }
         });
+        
+        
         
         jdcResume.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
@@ -240,7 +244,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
             }
         });
        
-            fillTheFields();
+            
         
             
     }
@@ -256,11 +260,31 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
            
        }
        
-       if(null!=application){
+       if(null!=updateable){
            //Fill the Employee Name and Lock the field
-           emp = application.getEmployeeID();
+           emp = updateable.getEmployeeID();
            jtEmployee.setText(emp.getSurName()+" "+emp.getOtherNames());
            jtEmployee.setEditable(false);
+           jcbApproved.setSelected(!updateable.getIsCanceled());
+           applicationDate = updateable.getApplicationDate();
+           jdcApplication.setDate(applicationDate);
+           startDate = updateable.getFromDate();
+           jdcLeaveStarts.setDate(startDate);
+           endDate = updateable.getToDate();
+           jdcLeaveEnds.setDate(endDate);
+           resumeDate = updateable.getResumptionDate();
+           jdcResume.setDate(resumeDate);
+           remarks = updateable.getRemarks();
+           jtRemarks.setText(remarks);
+           numberOfDays = updateable.getNoOfDays();
+           jtNumberOfDays.setValue(numberOfDays);
+           LvwLeave type = DataAccess.getLeaveByID(updateable.getLeaveTypeID());
+           jtLeaveType.setText(type.getLeaveName());
+                   
+                   
+           
+          
+           
            
        }
     }
@@ -447,6 +471,11 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
         org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(LeaveApplicationEditorTopComponent.class, "LeaveApplicationEditorTopComponent.jLabel2.text")); // NOI18N
 
         jtLeaveType.setText(org.openide.util.NbBundle.getMessage(LeaveApplicationEditorTopComponent.class, "LeaveApplicationEditorTopComponent.jtLeaveType.text")); // NOI18N
+        jtLeaveType.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtLeaveTypeMouseClicked(evt);
+            }
+        });
         jtLeaveType.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jtLeaveTypeKeyPressed(evt);
@@ -564,8 +593,8 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtLeaveTypeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtLeaveTypeKeyPressed
-        TopComponent tc = WindowManager.getDefault().findTopComponent("LeaveTypeTopComponent");
-        DialogDisplayer.getDefault().notify(new DialogDescriptor(tc, "Select Leave Type"));
+        
+        DialogDisplayer.getDefault().notify(new DialogDescriptor(lvtypeTC, "Select Leave Type"));
     }//GEN-LAST:event_jtLeaveTypeKeyPressed
 
     private void jcbApprovedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbApprovedActionPerformed
@@ -581,6 +610,10 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
     private void jtRemarksKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtRemarksKeyReleased
         
     }//GEN-LAST:event_jtRemarksKeyReleased
+
+    private void jtLeaveTypeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtLeaveTypeMouseClicked
+        DialogDisplayer.getDefault().notify(new DialogDescriptor(lvtypeTC, "Select Leave Type"));
+    }//GEN-LAST:event_jtLeaveTypeMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

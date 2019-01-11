@@ -5,11 +5,17 @@
  */
 package systems.tech247.leavereports;
 
+import java.awt.BorderLayout;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
+import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.view.BeanTreeView;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
+import systems.tech247.leavemgt.FactoryLeaveReports;
 
 /**
  * Top component which displays something.
@@ -35,12 +41,17 @@ import org.openide.util.NbBundle.Messages;
     "CTL_LeaveReportsTopComponent=Leave Reports",
     "HINT_LeaveReportsTopComponent=This is a LeaveReports window"
 })
-public final class LeaveReportsTopComponent extends TopComponent {
-
+public final class LeaveReportsTopComponent extends TopComponent implements ExplorerManager.Provider {
+    ExplorerManager em = new ExplorerManager();
     public LeaveReportsTopComponent() {
         initComponents();
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.TRUE);
         setName(Bundle.CTL_LeaveReportsTopComponent());
         setToolTipText(Bundle.HINT_LeaveReportsTopComponent());
+        setLayout(new BorderLayout());
+        BeanTreeView btv = new BeanTreeView();
+        btv.setRootVisible(false);
+        add(btv);
 
     }
 
@@ -68,7 +79,7 @@ public final class LeaveReportsTopComponent extends TopComponent {
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
-        // TODO add custom code on component opening
+        em.setRootContext(new AbstractNode(Children.create(new FactoryLeaveReports(), true)));
     }
 
     @Override
@@ -87,4 +98,11 @@ public final class LeaveReportsTopComponent extends TopComponent {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
     }
+
+    @Override
+    public ExplorerManager getExplorerManager() {
+        return em;
+    }
+    
+    
 }

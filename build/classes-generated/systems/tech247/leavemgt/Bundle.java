@@ -17,14 +17,14 @@ class Bundle {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_DashBoardTopComponent");
     }
     /**
-     * @return <i>EmployeeLeaveApplications</i>
+     * @return <i>Employee Leave Applications</i>
      * @see EmployeeLeaveApplicationsTopComponent
      */
     static String CTL_EmployeeLeaveApplicationsAction() {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_EmployeeLeaveApplicationsAction");
     }
     /**
-     * @return <i>EmployeeLeaveApplications Window</i>
+     * @return <i>Employee LeaveApplications</i>
      * @see EmployeeLeaveApplicationsTopComponent
      */
     static String CTL_EmployeeLeaveApplicationsTopComponent() {
@@ -36,6 +36,20 @@ class Bundle {
      */
     static String CTL_HolidayEditorTopComponent() {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_HolidayEditorTopComponent");
+    }
+    /**
+     * @return <i>Holidays</i>
+     * @see HolidaysTopComponent
+     */
+    static String CTL_HolidaysAction() {
+        return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_HolidaysAction");
+    }
+    /**
+     * @return <i>Holidays Window</i>
+     * @see HolidaysTopComponent
+     */
+    static String CTL_HolidaysTopComponent() {
+        return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_HolidaysTopComponent");
     }
     /**
      * @return <i>LVWEmployeeList</i>
@@ -176,6 +190,13 @@ class Bundle {
      */
     static String HINT_HolidayEditorTopComponent() {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "HINT_HolidayEditorTopComponent");
+    }
+    /**
+     * @return <i>This is a Holidays window</i>
+     * @see HolidaysTopComponent
+     */
+    static String HINT_HolidaysTopComponent() {
+        return org.openide.util.NbBundle.getMessage(Bundle.class, "HINT_HolidaysTopComponent");
     }
     /**
      * @return <i>This is a LVWEmployeeList window</i>

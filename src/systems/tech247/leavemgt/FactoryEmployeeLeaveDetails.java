@@ -11,9 +11,9 @@ import systems.tech247.util.NodeSetupItem;
 import java.util.List;
 import javax.swing.AbstractAction;
 import org.openide.nodes.ChildFactory;
-import org.openide.nodes.Children;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
+import org.openide.windows.TopComponent;
 import systems.tech247.hr.Employees;
 
 
@@ -32,15 +32,20 @@ public class FactoryEmployeeLeaveDetails extends ChildFactory<SetupItem> {
     
     @Override
     protected boolean createKeys(List<SetupItem> toPopulate) {
-        toPopulate.add(new SetupItem("Leave Taken",Children.LEAF));
-        toPopulate.add(new SetupItem("Leave Application", Children.create(new FactoryLeaveApplicationSetup(emp), true)));
-        //Leave applications show:
-        //1.Leaves Applied for and their status
-        //2.Summary Of Leave, accrued
+        toPopulate.add(new SetupItem("Leave Applications",new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TopComponent tc = new LeaveApplicationsTopComponent(emp);
+                tc.open();
+                tc.requestActive();
+                        
+            }
+        }));
+
         toPopulate.add(new SetupItem("Leave Transactions", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Show How Leaves Have been accumulating
+                //The TopComponent will show how leave has been accumulating and how it has been taken 
             }
         }));
         toPopulate.add(new SetupItem("Process Leave", new AbstractAction() {

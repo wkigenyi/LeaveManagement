@@ -6,24 +6,22 @@
 package systems.tech247.leavemgt;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import org.netbeans.api.settings.ConvertAsProperties;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
-import org.openide.explorer.view.BeanTreeView;
+import org.openide.explorer.ExplorerUtils;
+import org.openide.explorer.view.OutlineView;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
+import org.openide.util.Lookup;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
-import org.openide.windows.WindowManager;
-import systems.tech247.util.MessageType;
-import systems.tech247.util.NotifyUtil;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
+import org.openide.util.lookup.ProxyLookup;
+import systems.tech247.hr.Employees;
+import systems.tech247.util.CapCreatable;
 import systems.tech247.util.QueryEmployee;
 
 /**
@@ -36,7 +34,7 @@ import systems.tech247.util.QueryEmployee;
 @TopComponent.Description(
         preferredID = "LeaveApplicationsTopComponent",
         //iconBase="SET/PATH/TO/ICON/HERE", 
-        persistenceType = TopComponent.PERSISTENCE_ALWAYS
+        persistenceType = TopComponent.PERSISTENCE_NEVER
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = true, roles = {"leave"})
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LeaveApplicationsTopComponent")
@@ -56,31 +54,44 @@ public final class LeaveApplicationsTopComponent extends TopComponent implements
     String searchString = "";
     QueryEmployee query = new QueryEmployee();
     ExplorerManager em = new ExplorerManager();
-    public LeaveApplicationsTopComponent() {
+    Employees emp;
+    InstanceContent content = new InstanceContent();
+    Lookup lkp = new AbstractLookup(content);
+    
+    public LeaveApplicationsTopComponent(){
+        this(null);
+    }
+    
+    public LeaveApplicationsTopComponent(final Employees emp) {
         initComponents();
         setName(Bundle.CTL_LeaveApplicationsTopComponent());
         setToolTipText(Bundle.HINT_LeaveApplicationsTopComponent());
-        jpView.setLayout(new BorderLayout());
-        BeanTreeView btv = new BeanTreeView();
-        btv.setRootVisible(false);
-        jpView.add(btv);
+        setLayout(new BorderLayout());
         
-        jtEmployee.addKeyListener(new KeyListener() {
+        this.emp = emp;
+        
+        content.add(new CapCreatable() {
             @Override
-            public void keyTyped(KeyEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                getTheStringAndReload();
+            public void create() {
+                TopComponent tc = new LeaveApplicationEditorTopComponent(emp);
+                tc.open();
+                tc.requestActive();
             }
         });
+        OutlineView ov = new OutlineView("Leave Applications");
+        ov.getOutline().setRootVisible(false);
+        add(ov);
+        
+        ov.addPropertyColumn("from", "From");
+        ov.addPropertyColumn("to", "To");
+        ov.addPropertyColumn("days", "# Of Days");
+        ov.addPropertyColumn("resume", "Resume Date");
+        ov.addPropertyColumn("isCancelled", "Cancelled");
+        ov.addPropertyColumn("remarks", "Remarks");
+        
+        associateLookup(new ProxyLookup(ExplorerUtils.createLookup(em, getActionMap()),lkp));
+        
+        
         
 
     }
@@ -93,96 +104,23 @@ public final class LeaveApplicationsTopComponent extends TopComponent implements
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpView = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jtEmployee = new javax.swing.JTextField();
-        jcbDisengaged = new javax.swing.JCheckBox();
-
-        jpView.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jpViewLayout = new javax.swing.GroupLayout(jpView);
-        jpView.setLayout(jpViewLayout);
-        jpViewLayout.setHorizontalGroup(
-            jpViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jpViewLayout.setVerticalGroup(
-            jpViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 253, Short.MAX_VALUE)
-        );
-
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(LeaveApplicationsTopComponent.class, "LeaveApplicationsTopComponent.jLabel1.text")); // NOI18N
-
-        jtEmployee.setText(org.openide.util.NbBundle.getMessage(LeaveApplicationsTopComponent.class, "LeaveApplicationsTopComponent.jtEmployee.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jcbDisengaged, org.openide.util.NbBundle.getMessage(LeaveApplicationsTopComponent.class, "LeaveApplicationsTopComponent.jcbDisengaged.text")); // NOI18N
-        jcbDisengaged.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbDisengagedActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbDisengaged)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addGap(0, 352, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbDisengaged))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbDisengagedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDisengagedActionPerformed
-        disengaged = jcbDisengaged.isSelected();
-        searchString = jtEmployee.getText();
-        String sqlString = "SELECT e FROM Employees e WHERE (e.surName LIKE  '%"+searchString+"%' OR e.otherNames LIKE  '%"+searchString+"%' OR e.empCode LIKE  '%"+searchString+"%') AND e.isDisengaged =  '"+disengaged+"'  " ;
-        query.setSqlString(sqlString);
-        loadItems(query);   
-    }//GEN-LAST:event_jcbDisengagedActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JCheckBox jcbDisengaged;
-    private javax.swing.JPanel jpView;
-    private javax.swing.JTextField jtEmployee;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
-       String sqlString = "SELECT e FROM Employees e WHERE e.surName LIKE  'Nothing'" ;
-        query.setSqlString(sqlString);
-        loadItems(query);
-        //NotifyUtil.error("Error", "Error", false);
-        //NotifyUtil.warn("Warning", "Warning", false);
-        
-        NotifyUtil.show("Employees' Overdue Leave", "Employees with Overdue Leave", MessageType.WARNING, new ActionListener() {
-           @Override
-           public void actionPerformed(ActionEvent e) {
-               //Show Overdue Leave Panel
-               TopComponent tc = WindowManager.getDefault().findTopComponent("LeaveDueTopComponent");
-               DialogDisplayer.getDefault().notify(new NotifyDescriptor.Message(tc, NotifyDescriptor.PLAIN_MESSAGE));
-           }
-       }, false);
+        em.setRootContext(new AbstractNode(Children.create(new FactoryEmployeeLeaveApplications(emp), true)));
     }
 
     @Override
@@ -207,16 +145,6 @@ public final class LeaveApplicationsTopComponent extends TopComponent implements
        return em;
     }
     
-    void getTheStringAndReload(){
-        searchString = jtEmployee.getText();
-        String sqlString = "SELECT e FROM Employees e WHERE (e.surName LIKE  '%"+searchString+"%' OR e.otherNames LIKE  '%"+searchString+"%' OR e.empCode LIKE  '%"+searchString+"%') AND e.isDisengaged =  '"+disengaged+"'  " ;
-        
-            query.setSqlString(sqlString);
-                loadItems(query);
-            
-        
-    }
-    void loadItems(QueryEmployee query){
-        em.setRootContext(new AbstractNode(Children.create(new FactoryEmployeesList(query), true)));
-    }
+    
+    
 }

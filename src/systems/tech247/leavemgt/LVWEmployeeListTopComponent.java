@@ -5,12 +5,19 @@
  */
 package systems.tech247.leavemgt;
 
+import java.awt.BorderLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.view.BeanTreeView;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
+import systems.tech247.util.QueryEmployee;
 
 /**
  * Top component which displays something.
@@ -40,11 +47,37 @@ public final class LVWEmployeeListTopComponent extends TopComponent implements E
     
     ExplorerManager em = new ExplorerManager();
     
+    Boolean disengaged = false;
+    String searchString = "";
+    QueryEmployee query = new QueryEmployee();
+    
     public LVWEmployeeListTopComponent() {
         initComponents();
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.TRUE);
         setName(Bundle.CTL_LVWEmployeeListTopComponent());
         setToolTipText(Bundle.HINT_LVWEmployeeListTopComponent());
+        BeanTreeView btv = new BeanTreeView();
+        btv.setRootVisible(false);
+        jpView.setLayout(new BorderLayout());
+        jpView.add(btv);
+        
+        jtEmployeeName.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                loadItems();
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
 
+            @Override
+            public void keyPressed(KeyEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
     }
 
     /**
@@ -55,29 +88,34 @@ public final class LVWEmployeeListTopComponent extends TopComponent implements E
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jpView = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jtEmployeeName = new javax.swing.JTextField();
+        jcbDisengaged = new javax.swing.JCheckBox();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jpView.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpViewLayout = new javax.swing.GroupLayout(jpView);
+        jpView.setLayout(jpViewLayout);
+        jpViewLayout.setHorizontalGroup(
+            jpViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jpViewLayout.setVerticalGroup(
+            jpViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 248, Short.MAX_VALUE)
         );
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(LVWEmployeeListTopComponent.class, "LVWEmployeeListTopComponent.jLabel1.text")); // NOI18N
 
-        jTextField1.setText(org.openide.util.NbBundle.getMessage(LVWEmployeeListTopComponent.class, "LVWEmployeeListTopComponent.jTextField1.text")); // NOI18N
+        jtEmployeeName.setText(org.openide.util.NbBundle.getMessage(LVWEmployeeListTopComponent.class, "LVWEmployeeListTopComponent.jtEmployeeName.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jCheckBox1, org.openide.util.NbBundle.getMessage(LVWEmployeeListTopComponent.class, "LVWEmployeeListTopComponent.jCheckBox1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jcbDisengaged, org.openide.util.NbBundle.getMessage(LVWEmployeeListTopComponent.class, "LVWEmployeeListTopComponent.jcbDisengaged.text")); // NOI18N
+        jcbDisengaged.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbDisengagedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -86,13 +124,13 @@ public final class LVWEmployeeListTopComponent extends TopComponent implements E
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jCheckBox1)
+                        .addComponent(jcbDisengaged)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -102,23 +140,28 @@ public final class LVWEmployeeListTopComponent extends TopComponent implements E
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jtEmployeeName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbDisengaged))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcbDisengagedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbDisengagedActionPerformed
+        
+        loadItems();
+    }//GEN-LAST:event_jcbDisengagedActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JCheckBox jcbDisengaged;
+    private javax.swing.JPanel jpView;
+    private javax.swing.JTextField jtEmployeeName;
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
-        // TODO add custom code on component opening
+        loadItems();
     }
 
     @Override
@@ -140,7 +183,15 @@ public final class LVWEmployeeListTopComponent extends TopComponent implements E
 
     @Override
     public ExplorerManager getExplorerManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return em;
+    }
+    
+    void loadItems(){
+        disengaged = jcbDisengaged.isSelected();
+        searchString = jtEmployeeName.getText();
+        String sqlString = "SELECT e FROM Employees e WHERE (e.surName LIKE  '%"+searchString+"%' OR e.otherNames LIKE  '%"+searchString+"%' OR e.empCode LIKE  '%"+searchString+"%') AND e.isDisengaged =  '"+disengaged+"'  " ;
+        query.setSqlString(sqlString);
+        em.setRootContext(new AbstractNode(Children.create(new FactoryEmployeesList(query), true)));
     }
     
     

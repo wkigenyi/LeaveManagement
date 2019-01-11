@@ -5,9 +5,14 @@
  */
 package systems.tech247.leavemgt;
 
+import java.awt.BorderLayout;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
+import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.view.BeanTreeView;
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 
@@ -35,12 +40,17 @@ import org.openide.util.NbBundle.Messages;
     "CTL_LeaveSetupTopComponent=Leave Setup",
     "HINT_LeaveSetupTopComponent=This is a LeaveSetup window"
 })
-public final class LeaveSetupTopComponent extends TopComponent {
-
+public final class LeaveSetupTopComponent extends TopComponent implements ExplorerManager.Provider {
+    ExplorerManager em = new ExplorerManager();
     public LeaveSetupTopComponent() {
         initComponents();
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.TRUE);
         setName(Bundle.CTL_LeaveSetupTopComponent());
         setToolTipText(Bundle.HINT_LeaveSetupTopComponent());
+        setLayout(new BorderLayout());
+        BeanTreeView btv = new BeanTreeView();
+        btv.setRootVisible(false);
+        add(btv);
 
     }
 
@@ -68,7 +78,7 @@ public final class LeaveSetupTopComponent extends TopComponent {
     // End of variables declaration//GEN-END:variables
     @Override
     public void componentOpened() {
-        // TODO add custom code on component opening
+        em.setRootContext(new AbstractNode(Children.create(new FactoryLVWSetup(), true)));
     }
 
     @Override
@@ -87,4 +97,11 @@ public final class LeaveSetupTopComponent extends TopComponent {
         String version = p.getProperty("version");
         // TODO read your settings according to their version
     }
+
+    @Override
+    public ExplorerManager getExplorerManager() {
+        return em;
+    }
+    
+    
 }

@@ -49,17 +49,7 @@ public class FactoryLeaveTypes extends ChildFactory<Object>{
     
     @Override
     protected boolean createKeys(List<Object> list) {
-        if(add){
-            list.add(new AddTool(new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                  TopComponent editor = new LeaveEditorTopComponent();
-                    editor.open();
-                    editor.requestActive();
-                }
-            }));
-            
-        }
+        
         //Populate the list of child entries
         list.addAll(DataAccess.searchLeave(sql));
         
@@ -72,7 +62,7 @@ public class FactoryLeaveTypes extends ChildFactory<Object>{
         Node node = null;
         if(key instanceof LvwLeave){
             
-            node = new LeaveNode((LvwLeave)key);
+            node = new NodeLeaveType((LvwLeave)key);
         }else if(key instanceof AddTool){
             node = new NodeAddTool((AddTool)key);
         }
@@ -80,38 +70,6 @@ public class FactoryLeaveTypes extends ChildFactory<Object>{
         return node;
     }
     
-    private class LeaveNode extends AbstractNode{
-        
-        private final InstanceContent instanceContent;
-        LvwLeave unit;
-        
-        public LeaveNode(LvwLeave emp){
-            this(new InstanceContent(),emp);
-        }
-        
-        private LeaveNode (InstanceContent ic, LvwLeave unit){
-            super(Children.LEAF, new AbstractLookup(ic));
-            instanceContent = ic;
-            instanceContent.add(unit);
-            this.unit = unit;
-            setIconBaseWithExtension("systems/tech247/util/icons/document.png");
-            setDisplayName(unit.getLeaveName());
-        }
 
-        @Override
-        public Action getPreferredAction() {
-            final TopComponent editor = new LeaveEditorTopComponent(unit);
-            return new AbstractAction() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    editor.open();
-                    editor.requestActive();
-                }
-            };
-        }
-        
-        
-    
-}
     
 }

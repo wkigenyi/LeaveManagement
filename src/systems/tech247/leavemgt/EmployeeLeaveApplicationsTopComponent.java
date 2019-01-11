@@ -31,14 +31,14 @@ import systems.tech247.hr.Employees;
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_EmployeeLeaveApplicationsAction",
-        preferredID = "EmployeeLeaveApplicationsTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_EmployeeLeaveApplicationsAction",
+//        preferredID = "EmployeeLeaveApplicationsTopComponent"
+//)
 @Messages({
-    "CTL_EmployeeLeaveApplicationsAction=EmployeeLeaveApplications",
-    "CTL_EmployeeLeaveApplicationsTopComponent=EmployeeLeaveApplications Window",
+    "CTL_EmployeeLeaveApplicationsAction=Employee Leave Applications",
+    "CTL_EmployeeLeaveApplicationsTopComponent=Employee LeaveApplications",
     "HINT_EmployeeLeaveApplicationsTopComponent=This is a EmployeeLeaveApplications window"
 })
 public final class EmployeeLeaveApplicationsTopComponent extends TopComponent implements ExplorerManager.Provider {

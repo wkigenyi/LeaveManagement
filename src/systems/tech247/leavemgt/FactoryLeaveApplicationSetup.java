@@ -10,7 +10,6 @@ import systems.tech247.util.SetupItem;
 import systems.tech247.util.NodeSetupItem;
 import java.util.List;
 import javax.swing.AbstractAction;
-import org.openide.ErrorManager;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;

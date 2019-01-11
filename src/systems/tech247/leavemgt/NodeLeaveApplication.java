@@ -14,9 +14,13 @@ import org.openide.nodes.Node.Property;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
 import org.openide.util.Exceptions;
-import org.openide.util.lookup.Lookups;
+import org.openide.util.lookup.AbstractLookup;
+import org.openide.util.lookup.InstanceContent;
+import org.openide.windows.TopComponent;
 import systems.tech247.dbaccess.DataAccess;
+import systems.tech247.hr.LvwLeave;
 import systems.tech247.hr.LvwLeaveApplication;
+import systems.tech247.util.CapEditable;
 
 
 /**
@@ -27,13 +31,25 @@ public class NodeLeaveApplication extends  AbstractNode{
     
     LvwLeaveApplication app;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-    public NodeLeaveApplication(LvwLeaveApplication application) throws IntrospectionException {
-        super(Children.LEAF,Lookups.singleton(application));
+    
+    public NodeLeaveApplication(LvwLeaveApplication app) throws IntrospectionException{
+        this(app, new InstanceContent());
+    }
+    
+    public NodeLeaveApplication(LvwLeaveApplication application, InstanceContent ic) throws IntrospectionException {
+        super(Children.LEAF,new AbstractLookup(ic));
         this.app = application;
-        
-
-        setDisplayName(sdf.format(app.getApplicationDate()));
+        ic.add(application);
+        ic.add(new CapEditable() {
+            @Override
+            public void edit() {
+                TopComponent tc = new LeaveApplicationEditorTopComponent(app, null);
+                tc.open();
+                tc.requestActive();
+            }
+        });
+        LvwLeave leave = DataAccess.getLeaveByID(application.getLeaveTypeID());
+        setDisplayName(leave.getLeaveName());
         setIconBaseWithExtension("systems/tech247/util/icons/document.png");
     }
 
@@ -47,18 +63,7 @@ public class NodeLeaveApplication extends  AbstractNode{
         
         
         
-        Property leaveType = new PropertySupport("leaveType", String.class, "Leave Type", "What type Of Leave?", true, false) {
-            @Override
-            public Object getValue() throws IllegalAccessException, InvocationTargetException {
-                return DataAccess.getLeaveByID(application.getLeaveTypeID()).getLeaveName();
-            }
-            
-            @Override
-            public void setValue(Object t) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        };
-        set.put(leaveType);
+        
         
         Property from = new PropertySupport("from", String.class, "From", "Leave Starts", true, false) {
             @Override
@@ -91,7 +96,7 @@ public class NodeLeaveApplication extends  AbstractNode{
         Property days = new PropertySupport("days", String.class, "Number Of Days", "Days Taken", true, false) {
             @Override
             public Object getValue() throws IllegalAccessException, InvocationTargetException {
-                return application.getNoOfDays()+"";
+                return application.getNoOfDays();
             }
             
             @Override

@@ -27,7 +27,7 @@ import org.openide.util.NbBundle.Messages;
 @TopComponent.Description(
         preferredID = "LeaveTypeTopComponent",
         //iconBase="SET/PATH/TO/ICON/HERE", 
-        persistenceType = TopComponent.PERSISTENCE_ALWAYS
+        persistenceType = TopComponent.PERSISTENCE_NEVER
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = false)
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LeaveTypeTopComponent")
@@ -44,7 +44,12 @@ import org.openide.util.NbBundle.Messages;
 public final class LeaveTypeTopComponent extends TopComponent implements ExplorerManager.Provider {
 
     ExplorerManager em = new ExplorerManager();
+    
     public LeaveTypeTopComponent() {
+        this("");
+    }
+    
+    public LeaveTypeTopComponent(String view) {
         initComponents();
         setName(Bundle.CTL_LeaveTypeTopComponent());
         setToolTipText(Bundle.HINT_LeaveTypeTopComponent());
@@ -52,9 +57,19 @@ public final class LeaveTypeTopComponent extends TopComponent implements Explore
         OutlineView ov = new OutlineView("Leave Types");
         ov.getOutline().setRootVisible(false);
         add(ov);
+        if(!view.equals("")){
+            ov.addPropertyColumn("quota", "Annual Quota");
+            ov.addPropertyColumn("paid", "Paid");
+            ov.addPropertyColumn("encash", "Encashable");
+            ov.addPropertyColumn("gender", "Gender");
+            
+            
+        }
         associateLookup(ExplorerUtils.createLookup(em, getActionMap()));
+        
         em.setRootContext(new AbstractNode(Children.create(new FactoryLeaveTypes("SELECT l FROM LvwLeave l"), true)));
-
+        
+        
     }
 
     /**
@@ -82,6 +97,7 @@ public final class LeaveTypeTopComponent extends TopComponent implements Explore
     @Override
     public void componentOpened() {
         // TODO add custom code on component opening
+        
     }
 
     @Override

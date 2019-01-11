@@ -13,6 +13,10 @@
                     <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent-->
                     <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//EmployeeLeaveApplications//EN"/>
                 </file>
+                <file name="Holidays" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
+                    <!--systems.tech247.leavemgt.HolidaysTopComponent-->
+                    <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//Holidays//EN"/>
+                </file>
                 <file name="LVWEmployeeList" url="nbres:/org/netbeans/modules/settings/resources/properties-1_0.dtd">
                     <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
                     <attr name="hint.originalPublicID" stringvalue="-//systems.tech247.leavemgt//LVWEmployeeList//EN"/>
@@ -75,6 +79,10 @@
                         <file name="HolidayEditorTopComponent">
                             <!--systems.tech247.leavemgt.HolidayEditorTopComponent-->
                             <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_pdr/PositionEditor.instance"/>
+                        </file>
+                        <file name="HolidaysTopComponent">
+                            <!--systems.tech247.leavemgt.HolidaysTopComponent-->
+                            <attr name="settings.providerPath" stringvalue="xml/lookups//systems_tech247_leavemgt/Holidays.instance"/>
                         </file>
                         <file name="LVWEmployeeListTopComponent">
                             <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
@@ -142,6 +150,16 @@
                         methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
                     <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent"/>
                     <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent"/>
+                    <attr boolvalue="true" name="xmlproperties.preventStoring"/>
+                </file>
+                <file name="Holidays.instance">
+                    <!--systems.tech247.leavemgt.HolidaysTopComponent-->
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.create" name="instanceCreate"/>
+                    <attr
+                        methodvalue="org.netbeans.api.settings.Factory.properties" name="settings.convertor"/>
+                    <attr name="settings.instanceClass" stringvalue="systems.tech247.leavemgt.HolidaysTopComponent"/>
+                    <attr name="settings.instanceOf" stringvalue="systems.tech247.leavemgt.HolidaysTopComponent"/>
                     <attr boolvalue="true" name="xmlproperties.preventStoring"/>
                 </file>
                 <file name="LVWEmployeeList.instance">
@@ -258,10 +276,6 @@
                 <!--systems.tech247.leavemgt.DashBoardTopComponent-->
                 <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-DashBoardTopComponent.instance"/>
             </file>
-            <file name="systems-tech247-leavemgt-EmployeeLeaveApplicationsTopComponent.shadow">
-                <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent-->
-                <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-EmployeeLeaveApplicationsTopComponent.instance"/>
-            </file>
             <file name="systems-tech247-leavemgt-LVWEmployeeListTopComponent.shadow">
                 <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
                 <attr name="originalFile" stringvalue="Actions/Window/systems-tech247-leavemgt-LVWEmployeeListTopComponent.instance"/>
@@ -314,6 +328,13 @@
 <!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
 <settings version="1.0">
   <instance class="systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent"/>
+</settings>
+]]></file>
+            <file name="HolidaysTopComponent.settings">
+                <!--systems.tech247.leavemgt.HolidaysTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE settings PUBLIC "-//NetBeans//DTD Session settings 1.0//EN" "http://www.netbeans.org/dtds/sessionsettings-1_0.dtd">
+<settings version="1.0">
+  <instance class="systems.tech247.leavemgt.HolidaysTopComponent"/>
 </settings>
 ]]></file>
             <file name="LVWEmployeeListTopComponent.settings">
@@ -390,6 +411,14 @@
 <!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
 <tc-ref version="2.0">
   <tc-id id="EmployeeLeaveApplicationsTopComponent"/>
+  <state opened="false"/>
+</tc-ref>
+]]></file>
+                <file name="HolidaysTopComponent.wstcref">
+                    <!--systems.tech247.leavemgt.HolidaysTopComponent--><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tc-ref PUBLIC "-//NetBeans//DTD Top Component in Mode Properties 2.0//EN" "http://www.netbeans.org/dtds/tc-ref2_0.dtd">
+<tc-ref version="2.0">
+  <tc-id id="HolidaysTopComponent"/>
   <state opened="false"/>
 </tc-ref>
 ]]></file>
@@ -497,15 +526,6 @@
                 <attr name="preferredID" stringvalue="DashBoardTopComponent"/>
                 <attr
                     bundlevalue="systems.tech247.leavemgt.Bundle#CTL_DashBoardAction" name="displayName"/>
-            </file>
-            <file name="systems-tech247-leavemgt-EmployeeLeaveApplicationsTopComponent.instance">
-                <!--systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent-->
-                <attr
-                    methodvalue="org.openide.windows.TopComponent.openAction" name="instanceCreate"/>
-                <attr name="component" newvalue="systems.tech247.leavemgt.EmployeeLeaveApplicationsTopComponent"/>
-                <attr name="preferredID" stringvalue="EmployeeLeaveApplicationsTopComponent"/>
-                <attr
-                    bundlevalue="systems.tech247.leavemgt.Bundle#CTL_EmployeeLeaveApplicationsAction" name="displayName"/>
             </file>
             <file name="systems-tech247-leavemgt-LVWEmployeeListTopComponent.instance">
                 <!--systems.tech247.leavemgt.LVWEmployeeListTopComponent-->
