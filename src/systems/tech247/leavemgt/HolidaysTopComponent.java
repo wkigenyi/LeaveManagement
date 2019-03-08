@@ -8,7 +8,6 @@ package systems.tech247.leavemgt;
 import java.awt.BorderLayout;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.OutlineView;
@@ -42,8 +41,8 @@ import systems.tech247.util.CapCreatable;
 //        preferredID = "HolidaysTopComponent"
 //)
 @Messages({
-    "CTL_HolidaysAction=Holidays",
-    "CTL_HolidaysTopComponent=Holidays Window",
+    "CTL_HolidaysAction=Public Holidays",
+    "CTL_HolidaysTopComponent=Public Holidays",
     "HINT_HolidaysTopComponent=This is a Holidays window"
 })
 public final class HolidaysTopComponent extends TopComponent implements ExplorerManager.Provider {

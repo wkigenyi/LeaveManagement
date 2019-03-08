@@ -33,11 +33,11 @@ import systems.tech247.hr.Employees;
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LeaveDueTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_LeaveDueAction",
-        preferredID = "LeaveDueTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_LeaveDueAction",
+//        preferredID = "LeaveDueTopComponent"
+//)
 @Messages({
     "CTL_LeaveDueAction=LeaveDue",
     "CTL_LeaveDueTopComponent=LeaveDue Window",

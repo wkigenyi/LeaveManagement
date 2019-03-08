@@ -67,10 +67,15 @@ public class NodeHoliday extends AbstractNode{
         Set set = Sheet.createPropertiesSet();
         final PtmHolidays holiday = getLookup().lookup(PtmHolidays.class);
         final SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd-MMM-yyyy");
+        final SimpleDateFormat recurrentf = new SimpleDateFormat("dd-MMM");
         Property date = new PropertySupport("date", String.class, "Date", "Date", true, false) {
             @Override
             public Object getValue() throws IllegalAccessException, InvocationTargetException {
-                return sdf.format(holiday.getDateOf());
+                if(holiday.getRecurrent()){
+                    return recurrentf.format(holiday.getDateOf());
+                }else{
+                    return sdf.format(holiday.getDateOf());
+                }
             }
             
             @Override

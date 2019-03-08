@@ -14,6 +14,7 @@ import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.windows.TopComponent;
+import org.openide.windows.WindowManager;
 
 
 /**
@@ -29,6 +30,15 @@ public class FactoryLVWSetup extends ChildFactory<SetupItem> {
             @Override
             public void actionPerformed(ActionEvent e) {
                 TopComponent tc = new LeaveTypeTopComponent("view");
+                tc.open();
+                tc.requestActive();
+            }
+        }));
+        
+        toPopulate.add(new SetupItem("Import Leave", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TopComponent tc = WindowManager.getDefault().findTopComponent("ImportLeaveTopComponent");
                 tc.open();
                 tc.requestActive();
             }

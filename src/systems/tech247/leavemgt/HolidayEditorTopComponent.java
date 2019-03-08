@@ -152,10 +152,12 @@ public final class HolidayEditorTopComponent extends TopComponent{
         jdcDate.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                if(evt.getPropertyName()=="date" && evt.getSource()==jdcDate){
+                if("date".equals(evt.getPropertyName()) && evt.getSource()==jdcDate){
                     date = jdcDate.getDate();
                     try{
                         updatable.setDateOf(date);
+                        updatable.setDayOf(date.getDate());
+                        updatable.setMonthOf(date.getMonth()+1);
                         
                     }catch(NullPointerException ex){
                         
@@ -221,17 +223,21 @@ public final class HolidayEditorTopComponent extends TopComponent{
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 
                         String insertSQL = "INSERT INTO [dbo].[ptmHolidays]\n" +
-"           (         \n" +
-"            [HolidayName]\n" +
+"           ([MonthOf]\n" +
+"           ,[DayOf]\n" +
+"           ,[HolidayName]\n" +
 "           ,[DateOf]\n" +
 "           ,[Recurrent]\n" +
-"           )\n" +
+"           ,[Valid])\n" +
 "     VALUES\n" +
-"           ( ?,?,?           )";
+"           (?,?,?,?,?,?)";
             Query query = entityManager.createNativeQuery(insertSQL);
-            query.setParameter(1, leavename);
-            query.setParameter(2, sdf.format(date));
-            query.setParameter(3, recurrent);
+            query.setParameter(2, date.getDate());
+            query.setParameter(1, date.getMonth()+1);
+            query.setParameter(3, leavename);
+            query.setParameter(4, sdf.format(date));
+            query.setParameter(5, recurrent);
+            query.setParameter(6, true);
            
             
             
@@ -278,6 +284,8 @@ public final class HolidayEditorTopComponent extends TopComponent{
     
             if(leavename.length()<=1){
                 StatusDisplayer.getDefault().setStatusText("Proper Holiday Name is Required");
+            }else if(null == date){
+                StatusDisplayer.getDefault().setStatusText("Specify The Date");
             }else{
                 if(getLookup().lookup(HolidaySavable.class)==null){
                             ic.add(new HolidaySavable());

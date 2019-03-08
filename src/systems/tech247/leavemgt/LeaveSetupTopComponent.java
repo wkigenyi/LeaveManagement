@@ -30,11 +30,11 @@ import org.openide.util.NbBundle.Messages;
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = false)
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LeaveSetupTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_LeaveSetupAction",
-        preferredID = "LeaveSetupTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_LeaveSetupAction",
+//        preferredID = "LeaveSetupTopComponent"
+//)
 @Messages({
     "CTL_LeaveSetupAction=LeaveSetup",
     "CTL_LeaveSetupTopComponent=Leave Setup",

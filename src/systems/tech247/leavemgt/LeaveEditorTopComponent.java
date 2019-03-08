@@ -8,7 +8,6 @@ package systems.tech247.leavemgt;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import org.netbeans.api.settings.ConvertAsProperties;

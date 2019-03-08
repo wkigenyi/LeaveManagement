@@ -49,11 +49,11 @@ import systems.tech247.util.NotifyUtil;
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LeaveApplicationEditorTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_LeaveApplicationEditorAction",
-        preferredID = "LeaveApplicationEditorTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_LeaveApplicationEditorAction",
+//        preferredID = "LeaveApplicationEditorTopComponent"
+//)
 @Messages({
     "CTL_LeaveApplicationEditorAction=LeaveApplicationEditor",
     "CTL_LeaveApplicationEditorTopComponent=Leave Application Editor",
@@ -409,7 +409,8 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
                 LeaveAppSavable e = (LeaveAppSavable)o;
                 return tc() == e.tc();
             }
-            return false;        }
+            return false;        
+        }
 
         @Override
         public int hashCode() {

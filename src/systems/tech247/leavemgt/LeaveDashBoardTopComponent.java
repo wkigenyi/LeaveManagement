@@ -31,11 +31,11 @@ import systems.tech247.hr.Employees;
 )
 @TopComponent.Registration(mode = "editor", openAtStartup = false)
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LeaveDashBoardTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_LeaveDashBoardAction",
-        preferredID = "LeaveDashBoardTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_LeaveDashBoardAction",
+//        preferredID = "LeaveDashBoardTopComponent"
+//)
 @Messages({
     "CTL_LeaveDashBoardAction=LeaveDashBoard",
     "CTL_LeaveDashBoardTopComponent=Leave DashBoard",

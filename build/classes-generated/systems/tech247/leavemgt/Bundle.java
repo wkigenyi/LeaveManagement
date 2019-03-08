@@ -38,14 +38,14 @@ class Bundle {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_HolidayEditorTopComponent");
     }
     /**
-     * @return <i>Holidays</i>
+     * @return <i>Public Holidays</i>
      * @see HolidaysTopComponent
      */
     static String CTL_HolidaysAction() {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_HolidaysAction");
     }
     /**
-     * @return <i>Holidays Window</i>
+     * @return <i>Public Holidays</i>
      * @see HolidaysTopComponent
      */
     static String CTL_HolidaysTopComponent() {

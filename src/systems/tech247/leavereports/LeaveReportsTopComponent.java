@@ -31,11 +31,11 @@ import systems.tech247.leavemgt.FactoryLeaveReports;
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = false)
 @ActionID(category = "Window", id = "systems.tech247.leavereports.LeaveReportsTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_LeaveReportsAction",
-        preferredID = "LeaveReportsTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_LeaveReportsAction",
+//        preferredID = "LeaveReportsTopComponent"
+//)
 @Messages({
     "CTL_LeaveReportsAction=LeaveReports",
     "CTL_LeaveReportsTopComponent=Leave Reports",

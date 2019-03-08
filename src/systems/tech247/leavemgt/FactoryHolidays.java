@@ -5,22 +5,12 @@
  */
 package systems.tech247.leavemgt;
 
-import java.awt.event.ActionEvent;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
-import org.openide.nodes.Children;
 import org.openide.nodes.Node;
-import org.openide.util.lookup.AbstractLookup;
-import org.openide.util.lookup.InstanceContent;
-import org.openide.windows.TopComponent;
 import systems.tech247.dbaccess.DataAccess;
 import systems.tech247.hr.PtmHolidays;
-import systems.tech247.util.AddTool;
-import systems.tech247.util.NodeAddTool;
 
 
 
@@ -28,7 +18,7 @@ import systems.tech247.util.NodeAddTool;
  *
  * @author Wilfred
  */
-public class FactoryHolidays extends ChildFactory<Object>{
+public class FactoryHolidays extends ChildFactory<PtmHolidays>{
 
     
     
@@ -44,24 +34,34 @@ public class FactoryHolidays extends ChildFactory<Object>{
     }
     
     @Override
-    protected boolean createKeys(List<Object> list) {
+    protected boolean createKeys(List<PtmHolidays> toPopulate) {
         
         //Populate the list of child entries
-        list.addAll(DataAccess.getHolidays());
+        List<PtmHolidays> list = DataAccess.getHolidays();
+        for(PtmHolidays holiday : list){
+            if(holiday.getRecurrent()){
+                toPopulate.add(holiday);
+            }else{
+                Date date = new Date();
+                if(date.getYear() == holiday.getDateOf().getYear()){
+                    toPopulate.add(holiday);
+                }
+            }
+        }
+        //toPopulate.addAll(DataAccess.getHolidays());
         
         //return true since we are set
         return true;
     }
     
     @Override
-    protected Node createNodeForKey(Object key){
+    protected Node createNodeForKey(PtmHolidays key){
         Node node = null;
         
-        if(key instanceof PtmHolidays){
+        try{
+            node = new NodeHoliday(key);
+        }catch(Exception ex){
             
-            node = new NodeHoliday((PtmHolidays)key);
-        }else if(key instanceof AddTool){
-            node = new NodeAddTool((AddTool)key);
         }
         
         return node;

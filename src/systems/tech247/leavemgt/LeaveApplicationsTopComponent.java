@@ -38,11 +38,11 @@ import systems.tech247.util.QueryEmployee;
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = true, roles = {"leave"})
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LeaveApplicationsTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_LeaveApplicationsAction",
-        preferredID = "LeaveApplicationsTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_LeaveApplicationsAction",
+//        preferredID = "LeaveApplicationsTopComponent"
+//)
 @Messages({
     "CTL_LeaveApplicationsAction=LeaveApplications",
     "CTL_LeaveApplicationsTopComponent=Employee Leaves & Applications",

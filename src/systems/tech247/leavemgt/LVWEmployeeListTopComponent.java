@@ -33,11 +33,11 @@ import systems.tech247.util.QueryEmployee;
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = false)
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LVWEmployeeListTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_LVWEmployeeListAction",
-        preferredID = "LVWEmployeeListTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_LVWEmployeeListAction",
+//        preferredID = "LVWEmployeeListTopComponent"
+//)
 @Messages({
     "CTL_LVWEmployeeListAction=LVWEmployeeList",
     "CTL_LVWEmployeeListTopComponent=Employee List",

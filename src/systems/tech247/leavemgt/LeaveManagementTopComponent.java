@@ -28,11 +28,11 @@ import org.openide.util.NbBundle.Messages;
 )
 @TopComponent.Registration(mode = "explorer", openAtStartup = false/*, roles = {"leave"}*/)
 @ActionID(category = "Window", id = "systems.tech247.leavemgt.LeaveManagementTopComponent")
-@ActionReference(path = "Menu/Window" /*, position = 333 */)
-@TopComponent.OpenActionRegistration(
-        displayName = "#CTL_LeaveManagementAction",
-        preferredID = "LeaveManagementTopComponent"
-)
+//@ActionReference(path = "Menu/Window" /*, position = 333 */)
+//@TopComponent.OpenActionRegistration(
+//        displayName = "#CTL_LeaveManagementAction",
+//        preferredID = "LeaveManagementTopComponent"
+//)
 @Messages({
     "CTL_LeaveManagementAction=LeaveManagement",
     "CTL_LeaveManagementTopComponent=Leave Management",
