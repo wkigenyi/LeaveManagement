@@ -13,6 +13,8 @@ import javax.swing.AbstractAction;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
+import org.openide.windows.TopComponent;
+import org.openide.windows.WindowManager;
 
 /**
  *
@@ -38,7 +40,9 @@ public class FactoryLeaveReports extends ChildFactory<SetupItem> {
         toPopulate.add(new SetupItem("Leave Transactions Report",new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Run the report
+                TopComponent tc = WindowManager.getDefault().findTopComponent("LeaveDueTopComponent");
+                tc.open();
+                tc.requestActive();
             }
         },"systems/tech247/util/icons/capex.png"));
         

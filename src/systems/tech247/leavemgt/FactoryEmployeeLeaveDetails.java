@@ -45,7 +45,9 @@ public class FactoryEmployeeLeaveDetails extends ChildFactory<SetupItem> {
         toPopulate.add(new SetupItem("Leave Transactions", new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //The TopComponent will show how leave has been accumulating and how it has been taken 
+                TopComponent tc = new LeaveDueTopComponent(emp);
+                tc.open();
+                tc.requestActive();
             }
         }));
         toPopulate.add(new SetupItem("Process Leave", new AbstractAction() {

@@ -6,20 +6,28 @@
 package systems.tech247.leavemgt;
 
 import java.beans.IntrospectionException;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.lang.reflect.InvocationTargetException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node.Property;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
 import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
+import org.openide.util.LookupEvent;
+import org.openide.util.LookupListener;
 import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 import org.openide.windows.TopComponent;
 import systems.tech247.dbaccess.DataAccess;
-import systems.tech247.hr.LvwLeave;
 import systems.tech247.hr.LvwLeaveApplication;
+import systems.tech247.util.CapDeletable;
 import systems.tech247.util.CapEditable;
 
 
@@ -27,10 +35,11 @@ import systems.tech247.util.CapEditable;
  *
  * @author Admin
  */
-public class NodeLeaveApplication extends  AbstractNode{
+public class NodeLeaveApplication extends  AbstractNode implements LookupListener,PropertyChangeListener{
     
     LvwLeaveApplication app;
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    Lookup.Result<NodeRefreshLeaveApplication> rslt = UtilityLVW.getInstance().getLookup().lookupResult(NodeRefreshLeaveApplication.class);
     
     public NodeLeaveApplication(LvwLeaveApplication app) throws IntrospectionException{
         this(app, new InstanceContent());
@@ -43,13 +52,31 @@ public class NodeLeaveApplication extends  AbstractNode{
         ic.add(new CapEditable() {
             @Override
             public void edit() {
-                TopComponent tc = new LeaveApplicationEditorTopComponent(app, null);
+                TopComponent tc = new LeaveApplicationEditorTopComponent(app);
                 tc.open();
                 tc.requestActive();
             }
         });
-        LvwLeave leave = DataAccess.getLeaveByID(application.getLeaveTypeID());
-        setDisplayName(leave.getLeaveName());
+        
+        ic.add(new CapDeletable() {
+            @Override
+            public void delete() {
+                Object result = DialogDisplayer.getDefault().notify(new NotifyDescriptor.Confirmation("Delete this application?"));
+                if(result==NotifyDescriptor.YES_OPTION){
+                    DataAccess.entityManager.getTransaction().begin();
+                    app = DataAccess.entityManager.find(LvwLeaveApplication.class, app.getRecordNo());
+                    DataAccess.entityManager.remove(app);
+                    DataAccess.entityManager.getTransaction().commit();
+                    UtilityLVW.content.set(Arrays.asList(new NodeRefreshLeaveApplication()), null);
+                }
+            }
+        });
+        
+        rslt.addLookupListener(this);
+        
+        
+        
+        setDisplayName(application.getLeaveTypeID().getLeaveName());
         setIconBaseWithExtension("systems/tech247/util/icons/document.png");
     }
 
@@ -206,6 +233,32 @@ public class NodeLeaveApplication extends  AbstractNode{
         
         sheet.put(set);
         return sheet;
+    }
+
+    @Override
+    public void resultChanged(LookupEvent ev) {
+        Lookup.Result<NodeRefreshLeaveApplication> rslt = (Lookup.Result<NodeRefreshLeaveApplication>)ev.getSource();
+        for(NodeRefreshLeaveApplication nrp:rslt.allInstances()){
+            app = DataAccess.entityManager.find(LvwLeaveApplication.class, app.getRecordNo());
+            try{
+            setDisplayName(app.getLeaveTypeID().getLeaveName());
+            }catch(NullPointerException ex){
+                
+            }
+        }
+    }
+    
+    @Override
+    public void propertyChange(PropertyChangeEvent evt){
+        String propName = evt.getPropertyName();
+        Sheet.Set propertySet = getSheet().get(Sheet.PROPERTIES);
+        if(propertySet != null){
+            if(propertySet.get(propName)!=null){
+                firePropertyChange(propName, evt.getOldValue(), evt.getNewValue());
+            }else{
+                //
+            }
+        }
     }
     
     

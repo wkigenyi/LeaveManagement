@@ -83,7 +83,7 @@ public final class LeaveEditorTopComponent extends TopComponent{
         emp = e;
         
         if(null!=e){
-            updatable = entityManager.find(LvwLeave.class, e.getLvwLeavePK());
+            updatable = entityManager.find(LvwLeave.class, e.getLeaveID());
         }
         
         
@@ -184,11 +184,7 @@ public final class LeaveEditorTopComponent extends TopComponent{
 
         @Override
         protected String findDisplayName() {
-            if(null==emp){
-                return "New Leave";
-            }else{
-                return emp.getLeaveName();
-            }
+            return "Leave";
         }
         
         LeaveEditorTopComponent tc(){
@@ -251,6 +247,7 @@ public final class LeaveEditorTopComponent extends TopComponent{
                     
                 
             }
+            tc().close();
             
             UtilityLVW.loadLVWSetup();
         }
@@ -275,7 +272,7 @@ public final class LeaveEditorTopComponent extends TopComponent{
         
     
             if(leavename.length()<=1){
-                StatusDisplayer.getDefault().setStatusText("Proper Position Name is Required");
+                StatusDisplayer.getDefault().setStatusText("Proper Leave Name is Required");
             }else{
                 if(getLookup().lookup(LeaveSavable.class)==null){
                             ic.add(new LeaveSavable());
@@ -293,15 +290,13 @@ public final class LeaveEditorTopComponent extends TopComponent{
                 
                 leavename = e.getLeaveName();
                 jtLeaveName.setText(leavename);
-                
-                
                 prefix = e.getPrefix();
                 jtPrefix.setText(prefix);
-                
-                
-              
                 annualQuota = e.getAnnualQuota();
                 jtAnnualQuota.setText(e.getAnnualQuota()+"");
+                jcbPaid.setSelected(e.getPaid());
+                jcbBalanceToCarry.setSelected(e.getBalanceToCarry());
+                
                 
                 
                 
@@ -342,7 +337,7 @@ public final class LeaveEditorTopComponent extends TopComponent{
         jTextField5 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        jcbPaid1 = new javax.swing.JCheckBox();
+        jcbEncashable = new javax.swing.JCheckBox();
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel7, org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jLabel7.text")); // NOI18N
 
@@ -361,10 +356,20 @@ public final class LeaveEditorTopComponent extends TopComponent{
         jTextField4.setText(org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jTextField4.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jcbPaid, org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jcbPaid.text")); // NOI18N
+        jcbPaid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbPaidActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(jcbNoQuotaCheck, org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jcbNoQuotaCheck.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jcbBalanceToCarry, org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jcbBalanceToCarry.text")); // NOI18N
+        jcbBalanceToCarry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbBalanceToCarryActionPerformed(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(jLabel11, org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jLabel11.text")); // NOI18N
 
@@ -374,7 +379,12 @@ public final class LeaveEditorTopComponent extends TopComponent{
 
         jTextField6.setText(org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jTextField6.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jcbPaid1, org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jcbPaid1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jcbEncashable, org.openide.util.NbBundle.getMessage(LeaveEditorTopComponent.class, "LeaveEditorTopComponent.jcbEncashable.text")); // NOI18N
+        jcbEncashable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEncashableActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -402,7 +412,7 @@ public final class LeaveEditorTopComponent extends TopComponent{
                             .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jcbPaid1))
+                    .addComponent(jcbEncashable))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -439,10 +449,40 @@ public final class LeaveEditorTopComponent extends TopComponent{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbPaid)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcbPaid1)
+                .addComponent(jcbEncashable)
                 .addContainerGap(133, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jcbBalanceToCarryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbBalanceToCarryActionPerformed
+        balanceToCarry = jcbBalanceToCarry.isSelected();
+        try{
+            updatable.setBalanceToCarry(balanceToCarry);
+        }catch(NullPointerException ex){
+            
+        }
+        modify();
+    }//GEN-LAST:event_jcbBalanceToCarryActionPerformed
+
+    private void jcbPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPaidActionPerformed
+        paid = jcbPaid.isSelected();
+        try{
+            updatable.setPaid(paid);
+        }catch(NullPointerException ex){
+            
+        }
+        modify();
+    }//GEN-LAST:event_jcbPaidActionPerformed
+
+    private void jcbEncashableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEncashableActionPerformed
+        encashable = jcbEncashable.isSelected();
+        try{
+            updatable.setEncashable(encashable);
+        }catch(NullPointerException ex){
+            
+        }
+        modify();
+    }//GEN-LAST:event_jcbEncashableActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel10;
@@ -455,9 +495,9 @@ public final class LeaveEditorTopComponent extends TopComponent{
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JCheckBox jcbBalanceToCarry;
+    private javax.swing.JCheckBox jcbEncashable;
     private javax.swing.JCheckBox jcbNoQuotaCheck;
     private javax.swing.JCheckBox jcbPaid;
-    private javax.swing.JCheckBox jcbPaid1;
     private javax.swing.JTextField jtAnnualQuota;
     private javax.swing.JTextField jtLeaveName;
     private javax.swing.JTextField jtPrefix;

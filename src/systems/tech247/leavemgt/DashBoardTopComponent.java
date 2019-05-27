@@ -7,13 +7,13 @@ package systems.tech247.leavemgt;
 
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
 import org.openide.awt.StatusDisplayer;
 import org.openide.windows.TopComponent;
 import org.openide.util.NbBundle.Messages;
 import org.openide.windows.TopComponentGroup;
 import org.openide.windows.WindowManager;
 import systems.tech247.util.CetusUTL;
+import systems.tech247.util.NotifyUtil;
 
 /**
  * Top component which displays something.
@@ -49,6 +49,13 @@ public final class DashBoardTopComponent extends TopComponent {
         initComponents();
         setName(Bundle.CTL_DashBoardTopComponent());
         setToolTipText(Bundle.HINT_DashBoardTopComponent());
+        putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_DND_COPY_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_SLIDING_DISABLED, Boolean.TRUE);
+        
 
     }
 
@@ -116,7 +123,11 @@ public final class DashBoardTopComponent extends TopComponent {
 //        }
         
         if(group != null){
-            group.open();
+            try{
+                group.open();
+            }catch(Exception ex){
+                NotifyUtil.error("Error Opening Group", "Error Opening Group", ex, false);
+            }    
             CetusUTL.currentTCG = group;
         }else{
             StatusDisplayer.getDefault().setStatusText("Leave Management Group is null");

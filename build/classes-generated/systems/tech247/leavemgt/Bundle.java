@@ -108,14 +108,14 @@ class Bundle {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_LeaveDashBoardTopComponent");
     }
     /**
-     * @return <i>LeaveDue</i>
+     * @return <i>Leave Transactions</i>
      * @see LeaveDueTopComponent
      */
     static String CTL_LeaveDueAction() {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "CTL_LeaveDueAction");
     }
     /**
-     * @return <i>LeaveDue Window</i>
+     * @return <i>Leave Transactions</i>
      * @see LeaveDueTopComponent
      */
     static String CTL_LeaveDueTopComponent() {
@@ -227,7 +227,7 @@ class Bundle {
         return org.openide.util.NbBundle.getMessage(Bundle.class, "HINT_LeaveDashBoardTopComponent");
     }
     /**
-     * @return <i>This is a LeaveDue window</i>
+     * @return <i>This is a LeaveDue</i>
      * @see LeaveDueTopComponent
      */
     static String HINT_LeaveDueTopComponent() {

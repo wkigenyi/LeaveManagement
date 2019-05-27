@@ -41,7 +41,7 @@
                           <Component id="jTextField6" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jcbPaid1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jcbEncashable" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -87,7 +87,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jcbPaid" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jcbPaid1" min="-2" max="-2" attributes="0"/>
+              <Component id="jcbEncashable" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="133" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -156,6 +156,9 @@
           <ResourceString bundle="systems/tech247/leavemgt/Bundle.properties" key="LeaveEditorTopComponent.jcbPaid.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbPaidActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jcbNoQuotaCheck">
       <Properties>
@@ -170,6 +173,9 @@
           <ResourceString bundle="systems/tech247/leavemgt/Bundle.properties" key="LeaveEditorTopComponent.jcbBalanceToCarry.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbBalanceToCarryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
@@ -199,12 +205,15 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jcbPaid1">
+    <Component class="javax.swing.JCheckBox" name="jcbEncashable">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="systems/tech247/leavemgt/Bundle.properties" key="LeaveEditorTopComponent.jcbPaid1.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="systems/tech247/leavemgt/Bundle.properties" key="LeaveEditorTopComponent.jcbEncashable.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbEncashableActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

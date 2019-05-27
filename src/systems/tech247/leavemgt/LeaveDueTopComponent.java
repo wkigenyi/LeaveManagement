@@ -6,6 +6,7 @@
 package systems.tech247.leavemgt;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import java.util.List;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
@@ -39,13 +40,22 @@ import systems.tech247.hr.Employees;
 //        preferredID = "LeaveDueTopComponent"
 //)
 @Messages({
-    "CTL_LeaveDueAction=LeaveDue",
-    "CTL_LeaveDueTopComponent=LeaveDue Window",
-    "HINT_LeaveDueTopComponent=This is a LeaveDue window"
+    "CTL_LeaveDueAction=Leave Transactions",
+    "CTL_LeaveDueTopComponent=Leave Transactions",
+    "HINT_LeaveDueTopComponent=This is a LeaveDue"
 })
 public final class LeaveDueTopComponent extends TopComponent implements ExplorerManager.Provider {
+    
     ExplorerManager em = new ExplorerManager();
-    public LeaveDueTopComponent() {
+    Employees emp;
+    List<Employees> list = new ArrayList<>();
+    
+    public LeaveDueTopComponent(){
+        this(null);
+    }
+    
+    
+    public LeaveDueTopComponent(Employees emp) {
         initComponents();
         setName(Bundle.CTL_LeaveDueTopComponent());
         setToolTipText(Bundle.HINT_LeaveDueTopComponent());
@@ -62,8 +72,17 @@ public final class LeaveDueTopComponent extends TopComponent implements Explorer
         ov.addPropertyColumn("balance", "Due Days");
         ov.getOutline().setRootVisible(false);
         add(ov);
-        List<Employees> list = DataAccess.searchEmployees("SELECT e FROM Employees e WHERE e.isDisengaged= 0");
-        em.setRootContext(new AbstractNode(Children.create(new FactoryLeaveCycle(list), true)));
+        
+        this.emp = emp;
+        if(null==emp){
+         list= DataAccess.searchEmployees("SELECT e FROM Employees e WHERE e.isDisengaged= 0");
+        
+        em.setRootContext(new AbstractNode(Children.create(new FactoryLeaveCycle(list), true)));   
+        }else{
+            list.add(emp);
+            em.setRootContext(new AbstractNode(Children.create(new FactoryLeaveCycle(list), true)));
+        }
+         
 
     }
 

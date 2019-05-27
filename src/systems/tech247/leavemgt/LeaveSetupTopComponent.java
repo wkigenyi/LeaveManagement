@@ -8,7 +8,6 @@ package systems.tech247.leavemgt;
 import java.awt.BorderLayout;
 import org.netbeans.api.settings.ConvertAsProperties;
 import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.BeanTreeView;
 import org.openide.nodes.AbstractNode;
@@ -44,7 +43,12 @@ public final class LeaveSetupTopComponent extends TopComponent implements Explor
     ExplorerManager em = new ExplorerManager();
     public LeaveSetupTopComponent() {
         initComponents();
+        putClientProperty(TopComponent.PROP_UNDOCKING_DISABLED, Boolean.TRUE);
         putClientProperty(TopComponent.PROP_CLOSING_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_DND_COPY_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_DRAGGING_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_MAXIMIZATION_DISABLED, Boolean.TRUE);
+        putClientProperty(TopComponent.PROP_SLIDING_DISABLED, Boolean.TRUE);
         setName(Bundle.CTL_LeaveSetupTopComponent());
         setToolTipText(Bundle.HINT_LeaveSetupTopComponent());
         setLayout(new BorderLayout());

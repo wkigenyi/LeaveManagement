@@ -5,17 +5,20 @@
  */
 package systems.tech247.leavemgt;
 
-import java.awt.event.ActionEvent;
 import java.beans.IntrospectionException;
 import java.util.List;
-import javax.swing.AbstractAction;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
+import org.openide.util.LookupEvent;
+import org.openide.util.LookupListener;
+import systems.tech247.api.NodeRefreshEvent;
 import systems.tech247.dbaccess.DataAccess;
 import systems.tech247.hr.Employees;
 import systems.tech247.hr.LvwLeaveApplication;
 import systems.tech247.util.AddTool;
+import systems.tech247.util.CetusUTL;
 import systems.tech247.util.NodeAddTool;
 
 
@@ -23,12 +26,14 @@ import systems.tech247.util.NodeAddTool;
  *
  * @author WKigenyi
  */
-public class FactoryEmployeeLeaveApplications extends ChildFactory<Object> {
+public class FactoryEmployeeLeaveApplications extends ChildFactory<Object> implements LookupListener {
     
     Employees emp;
+    Lookup.Result<NodeRefreshLeaveApplication> rslt = UtilityLVW.getInstance().getLookup().lookupResult(NodeRefreshLeaveApplication.class);
     
     public FactoryEmployeeLeaveApplications(Employees emp){
         this.emp = emp;
+        rslt.addLookupListener(this);
     }
     
     
@@ -63,5 +68,13 @@ public class FactoryEmployeeLeaveApplications extends ChildFactory<Object> {
         
         
         return node;
+    }
+
+    @Override
+    public void resultChanged(LookupEvent ev) {
+        Lookup.Result<NodeRefreshLeaveApplication> rslt = (Lookup.Result<NodeRefreshLeaveApplication>)ev.getSource();
+        for(NodeRefreshLeaveApplication nrp:rslt.allInstances()){
+            refresh(true);
+        }
     }
 }

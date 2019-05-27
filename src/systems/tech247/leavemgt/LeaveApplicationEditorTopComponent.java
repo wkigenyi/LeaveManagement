@@ -5,11 +5,11 @@
  */
 package systems.tech247.leavemgt;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Query;
@@ -20,7 +20,7 @@ import org.netbeans.spi.actions.AbstractSavable;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.awt.ActionID;
-import org.openide.awt.ActionReference;
+import org.openide.awt.StatusDisplayer;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -75,12 +75,15 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
     //The updateable
     LvwLeaveApplication updateable;
     
+    
+    LvwLeave leaveType;
+    SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
     //Leave Details
     int leaveTypeID =0;
     //Start Date
     Date startDate;
     //Number Of Days
-    Double numberOfDays=1.0;
+    Double numberOfDays=0.0;
     //End Date
     Date endDate;
     //Resumption Date
@@ -92,7 +95,11 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
     //Application Date
     Date applicationDate;
     public LeaveApplicationEditorTopComponent(){
-        this(null);
+       
+    }
+    
+    public LeaveApplicationEditorTopComponent(LvwLeaveApplication applic){
+       this(applic,applic.getEmployeeID()); 
     }
     
     public LeaveApplicationEditorTopComponent(Employees employee){
@@ -101,17 +108,19 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
     }
     
     
-    public LeaveApplicationEditorTopComponent(LvwLeaveApplication application,Employees emp) {
+    public LeaveApplicationEditorTopComponent(LvwLeaveApplication application,final Employees emp) {
         initComponents();
         setName(Bundle.CTL_LeaveApplicationEditorTopComponent());
         setToolTipText(Bundle.HINT_LeaveApplicationEditorTopComponent());
+        this.emp = emp;
+        
         
         if(null!=application){
-            this.updateable = DataAccess.getEntityManager().find(LvwLeaveApplication.class, application.getLvwLeaveApplicationPK());
+            this.updateable = DataAccess.getEntityManager().find(LvwLeaveApplication.class, application.getRecordNo());
             
         }
         
-        this.emp = emp;
+        
         
         fillTheFields();
         
@@ -119,30 +128,53 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if(evt.getSource()==jdcLeaveStarts && evt.getPropertyName()=="date"){
-                    startDate = jdcLeaveStarts.getDate();
+                    String dateString = sdf.format(jdcLeaveStarts.getDate());
+                    startDate = new Date(dateString); //new date
+                    
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(startDate);
-                    cal.set(Calendar.HOUR, 12);
-                    cal.set(Calendar.MINUTE, 0);
-                    cal.set(Calendar.SECOND, 0);
-                    cal.set(Calendar.MILLISECOND, 0);
-                    cal.add(Calendar.DAY_OF_MONTH, -1);
-                    startDate = cal.getTime();
-                    int i= numberOfDays.intValue();
                     
                     
-                    cal.add(Calendar.DAY_OF_MONTH,numberOfDays.intValue());
-                    cal.add(Calendar.DAY_OF_MONTH, -1);
-                    jdcLeaveEnds.setDate(cal.getTime());
-                    endDate = cal.getTime();
-                    
-                    
-                    try{
+                    if(updateable != null){
+                        
+                        cal.add(Calendar.DAY_OF_MONTH, numberOfDays.intValue()-1);
+                        endDate = cal.getTime();
+                        int restDays = DataAccess.getRestDays(emp.getEmployeeID(), startDate, endDate);
+                        resumeDate = DataAccess.getReturnDate(emp.getEmployeeID(), endDate);
+                        if(restDays>0){
+                            NotifyUtil.warn("Rest Days In Date Range", emp.getSurName()+" has "+restDays+" rest day(s) from "+sdf.format(startDate)+" to "+ sdf.format(endDate), false);
+                            cal.add(Calendar.DAY_OF_MONTH, restDays);
+                            endDate = cal.getTime();
+                            resumeDate = DataAccess.getReturnDate(emp.getEmployeeID(), endDate);
+                        }
+                        
                         updateable.setFromDate(startDate);
                         updateable.setToDate(endDate);
-                    }catch(NullPointerException ex){
-                        jtNumberOfDays.setValue(numberOfDays);
+                        updateable.setResumptionDate(resumeDate);
+                        updateable.setNoOfDays(numberOfDays);
+                        jdcLeaveEnds.setDate(endDate);
+                        
+                        jdcResume.setDate(resumeDate);
+                        
+                    }else{
+                        cal.add(Calendar.DAY_OF_MONTH, numberOfDays.intValue()-1);
+                        endDate = cal.getTime();
+                        int restDays = DataAccess.getRestDays(emp.getEmployeeID(), startDate, endDate);
+                        resumeDate = DataAccess.getReturnDate(emp.getEmployeeID(), endDate);
+                        if(restDays>0){
+                            NotifyUtil.warn("Rest Days In Date Range", emp.getSurName()+" has "+restDays+" rest day(s) from "+sdf.format(startDate)+" to "+ sdf.format(endDate), false);
+                            cal.add(Calendar.DAY_OF_MONTH, restDays);
+                            endDate = cal.getTime();
+                            resumeDate = DataAccess.getReturnDate(emp.getEmployeeID(), endDate);
+                        }
+                        
+                        
+                        jdcLeaveEnds.setDate(endDate);
+                        jdcResume.setDate(resumeDate);
                     }
+                    
+                    
+                    modify(1);
                 }
             }
         });
@@ -153,58 +185,41 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if(evt.getSource()==jdcResume && evt.getPropertyName()=="date"){
-                    resumeDate = jdcResume.getDate();
-                    if(resumeDate.before(endDate)){
-                        NotifyUtil.error("Resume Date must be after end Of Leave", remarks, true);
-                    }else{
-                        try{
+                    String resume = sdf.format(jdcResume.getDate());
+                    //NotifyUtil.info("Date Created", resume, false);
+                    resumeDate = new Date(resume);
+                    endDate = DataAccess.getEndDate(emp.getEmployeeID(), resumeDate);
+                    jdcLeaveEnds.setDate(endDate);
+                    int leaveDays = DataAccess.getLeaveDays(emp.getEmployeeID(), startDate, endDate);
+                    numberOfDays = new Double(leaveDays);
+                    jtNumberOfDays.setValue(numberOfDays);
+                    
+                    try{
                         updateable.setResumptionDate(resumeDate);
-                        }catch(NullPointerException ex){
-                            
-                        }
+                        updateable.setNoOfDays(numberOfDays);
+                        
+                    }catch(NullPointerException ex){
+                        
                     }
-                    modify();
+                    
+                    modify(2);
                 }
                 
             }
         });
         
-        jtNumberOfDays.addKeyListener(new KeyListener() {
+        jtNumberOfDays.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                try{
-                numberOfDays = new Double(jtNumberOfDays.getText());
-                int number = numberOfDays.intValue();
-                Calendar cal =  Calendar.getInstance();
-                cal.setTime(startDate);
-                cal.add(Calendar.DAY_OF_MONTH, number-1);
-                endDate = cal.getTime();
-                jdcLeaveEnds.setDate(endDate);
-                
-                    try{
-                        
-                        updateable.setNoOfDays(numberOfDays);
-                        updateable.setToDate(endDate);
-                    }catch(NullPointerException ex){
-                        
-                    }
-                    modify();
-                }catch(Exception ex){
-                    NotifyUtil.error("Type Only Numbers", "Type Only Numbers", false);
+            public void propertyChange(PropertyChangeEvent evt) {
+                if(evt.getSource()==jtNumberOfDays && evt.getPropertyName()=="value"){
+                    computeDates();
                 }
-                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
+        
+        
+        
+        
         
         jtRemarks.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -216,7 +231,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
                 }catch(NullPointerException ex){
                     
                 }
-                modify();
+                modify(3);
             }
 
             @Override
@@ -228,7 +243,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
                 }catch(NullPointerException ex){
                     
                 }
-                modify();
+                modify(4);
             }
 
             @Override
@@ -239,7 +254,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
                 }catch(NullPointerException ex){
                     
                 }
-                modify();
+                modify(5);
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
@@ -247,6 +262,38 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
             
         
             
+    }
+    void computeDates(){
+        try{
+                numberOfDays = new Double(jtNumberOfDays.getText());
+                int number = numberOfDays.intValue();
+                Calendar cal =  Calendar.getInstance();
+                cal.setTime(startDate);
+                cal.add(Calendar.DAY_OF_MONTH, number-1);
+                endDate = cal.getTime();
+                
+                int restDays = DataAccess.getRestDays(emp.getEmployeeID(), startDate, endDate);
+                if(restDays>0){
+                    NotifyUtil.warn("Rest Days In Date Range", emp.getSurName()+" has "+restDays+" rest day(s) from "+sdf.format(startDate)+" to "+ sdf.format(endDate), false);
+                }
+                cal.add(Calendar.DAY_OF_MONTH, restDays);
+                endDate = cal.getTime();
+                jdcLeaveEnds.setDate(endDate);
+                resumeDate = DataAccess.getReturnDate(emp.getEmployeeID(), endDate);
+                jdcResume.setDate(resumeDate);
+                    try{
+                        
+                        updateable.setResumptionDate(resumeDate);
+                        updateable.setNoOfDays(numberOfDays);
+                        updateable.setToDate(endDate);
+                    }catch(NullPointerException ex){
+                        //NotifyUtil.error("Error", "Error",ex, false);
+                    }
+                    modify(6);
+                }catch(Exception ex){
+                    NotifyUtil.error("Error", "Error",ex, false);
+                }
+                //jtRemarks.requestFocus();
     }
     
     void fillTheFields(){
@@ -266,6 +313,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
            jtEmployee.setText(emp.getSurName()+" "+emp.getOtherNames());
            jtEmployee.setEditable(false);
            jcbApproved.setSelected(!updateable.getIsCanceled());
+           cancelled = updateable.getIsCanceled();
            applicationDate = updateable.getApplicationDate();
            jdcApplication.setDate(applicationDate);
            startDate = updateable.getFromDate();
@@ -278,8 +326,8 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
            jtRemarks.setText(remarks);
            numberOfDays = updateable.getNoOfDays();
            jtNumberOfDays.setValue(numberOfDays);
-           LvwLeave type = DataAccess.getLeaveByID(updateable.getLeaveTypeID());
-           jtLeaveType.setText(type.getLeaveName());
+           leaveType = updateable.getLeaveTypeID();
+           jtLeaveType.setText(leaveType.getLeaveName());
                    
                    
            
@@ -294,14 +342,15 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
         Lookup.Result<LvwLeave> rslt = (Lookup.Result<LvwLeave>)le.getSource();
         for(LvwLeave l : rslt.allInstances()){
             jtLeaveType.setText(l.getLeaveName());
-            leaveTypeID = l.getLvwLeavePK().getLeaveID();
+            //leaveTypeID = l.getLvwLeavePK().getLeaveID();
+            leaveType = l;
             try{
-                updateable.setLeaveTypeID(leaveTypeID);
+                updateable.setLeaveTypeID(leaveType);
             }catch(NullPointerException ex){
                 
             }
             
-            modify();
+            modify(7);
         }
     }
     
@@ -314,7 +363,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
 
         @Override
         protected String findDisplayName() {
-            if(null==application){
+            if(null==updateable){
                 return "New Leave Application";
             }else{
                 return "Leave Application For" + emp.getSurName()+" "+emp.getOtherNames();
@@ -327,11 +376,13 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
 
         @Override
         protected void handleSave() throws IOException {
+           //tc().requestFocusInWindow(true);
+            
             
             tc().ic.remove(this);
             unregister();
-            //New Employee
-            if(null==application){
+            //New Application
+            if(null==updateable){
                 applicationDate = new Date();
                 jdcApplication.setDate(applicationDate);
                 
@@ -359,7 +410,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
             query.setParameter(1, emp.getEmployeeID());
             query.setParameter(2, startDate);
             query.setParameter(3, endDate);
-            query.setParameter(4, leaveTypeID);
+            query.setParameter(4, leaveType.getLeaveID());
             query.setParameter(5, numberOfDays);
             query.setParameter(6, false);
             query.setParameter(7, cancelled);
@@ -378,7 +429,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
             query.executeUpdate();
             entityManager.getTransaction().commit();
             }else{
-                //Creating a new Employee
+                //Updating an existing leave
                 entityManager.getTransaction().begin();
                 entityManager.getTransaction().commit();
                 
@@ -386,19 +437,9 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
                 
             }
             
-            if(!cancelled){
-                //UPDATE The Attendance / ShiftSchedule
-                String sql = "UPDATE PtmShiftSchedule SET IsLeave=1 WHERE EmployeeID=? AND ShiftDate>=? AND ShiftDate<=?";
-                Query query =  entityManager.createNativeQuery(sql);
-                query.setParameter(1, emp.getEmployeeID());
-                query.setParameter(2, startDate);
-                query.setParameter(3, endDate);
-                entityManager.getTransaction().begin();
-                query.executeUpdate();
-                entityManager.getTransaction().commit();
-                
-            }
             
+            
+            UtilityLVW.content.set(Arrays.asList(new NodeRefreshLeaveApplication()), null);
             this.tc().close();
             
         }
@@ -419,13 +460,19 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
         
     }
     
-    public void modify(){
+    public void modify(int i){
         
-        
+            //NotifyUtil.info("Where is Modify", "Here At "+i, false);
     
-            if(leaveTypeID == 0){
-                NotifyUtil.error("Specify A Leave Type", "Leave Type is required", false);
-            
+            if(leaveType == null){
+                StatusDisplayer.getDefault().setStatusText("Specify the Leave Type");
+            }else if(startDate == null){
+                StatusDisplayer.getDefault().setStatusText("Specify the Start Date");
+            }else if(numberOfDays == 0 || endDate==null || resumeDate==null){
+                
+                    StatusDisplayer.getDefault().setStatusText("Specify either the number of days, the Leave End Date or Resume Date");
+                
+                
             }else{
                 if(getLookup().lookup(LeaveAppSavable.class)==null){
                             ic.add(new LeaveAppSavable());
@@ -434,6 +481,24 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
         
         
             
+        
+    }
+    
+    void reset(){
+        
+    
+    //Start Date
+    startDate = null;
+    //Number Of Days
+    numberOfDays=0.0;
+    //End Date
+    endDate = null;
+    //Resumption Date
+    resumeDate = null;
+    //Remarks
+    remarks = "";
+    
+    
         
     }
 
@@ -517,7 +582,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
             }
         });
 
-        jtNumberOfDays.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        jtNumberOfDays.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
         jtNumberOfDays.setText(org.openide.util.NbBundle.getMessage(LeaveApplicationEditorTopComponent.class, "LeaveApplicationEditorTopComponent.jtNumberOfDays.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -602,10 +667,10 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
         cancelled = !jcbApproved.isSelected();
         try{
             updateable.setIsCanceled(cancelled);
-        }catch(NullPointerException ex){
-            
+        }catch(Exception ex){
+            //NotifyUtil.error("Exception", "Exception", ex, false);
         }
-        modify();
+        modify(8);
     }//GEN-LAST:event_jcbApprovedActionPerformed
 
     private void jtRemarksKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtRemarksKeyReleased
@@ -644,7 +709,7 @@ public final class LeaveApplicationEditorTopComponent extends TopComponent imple
 
     @Override
     public void componentClosed() {
-        // TODO add custom code on component closing
+        reset();
     }
 
     void writeProperties(java.util.Properties p) {
